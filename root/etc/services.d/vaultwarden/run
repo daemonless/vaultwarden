@@ -1,0 +1,12 @@
+#!/bin/sh
+# Vaultwarden s6 service
+
+export HOME=/config
+export DATA_FOLDER=/config
+export WEB_VAULT_FOLDER=/usr/local/www/vaultwarden/web-vault
+export WEB_VAULT_ENABLED=true
+export ROCKET_ADDRESS=127.0.0.1
+export ROCKET_PORT=8080
+
+cd /config
+exec /usr/local/bin/s6-setuidgid bsd /usr/local/bin/vaultwarden

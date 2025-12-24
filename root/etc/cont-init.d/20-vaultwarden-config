@@ -1,0 +1,31 @@
+#!/bin/sh
+
+PUID=${PUID:-1000}
+PGID=${PGID:-1000}
+
+echo "-------------------------------------"
+echo "GID/UID"
+echo "-------------------------------------"
+echo "User uid:    $PUID"
+echo "User gid:    $PGID"
+echo "-------------------------------------"
+
+# Create directory structure
+mkdir -p \
+    /config/nginx \
+    /config/log/nginx \
+    /var/run \
+    /var/log/nginx
+
+# Copy default configs if they don't exist
+if [ ! -f /config/nginx/nginx.conf ]; then
+    cp /defaults/nginx.conf /config/nginx/nginx.conf
+fi
+
+if [ ! -f /config/nginx/site.conf ]; then
+    cp /defaults/site.conf /config/nginx/site.conf
+fi
+
+# Set permissions
+chown -R bsd:bsd /config /var/log/nginx /var/log
+chown -R bsd:bsd /var/tmp/nginx 2>/dev/null || true
