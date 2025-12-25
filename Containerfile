@@ -4,7 +4,7 @@ FROM ghcr.io/daemonless/nginx-base:${BASE_VERSION}
 ARG FREEBSD_ARCH=amd64
 ARG PACKAGES="vaultwarden vaultwarden_web-vault"
 
-LABEL org.opencontainers.image.title="vaultwarden" \
+LABEL org.opencontainers.image.title="Vaultwarden" \
     org.opencontainers.image.description="Vaultwarden (Bitwarden compatible backend) on FreeBSD" \
     org.opencontainers.image.source="https://github.com/daemonless/vaultwarden" \
     org.opencontainers.image.licenses="GPL-3.0-only" \
