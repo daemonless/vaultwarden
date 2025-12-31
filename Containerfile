@@ -3,6 +3,8 @@ FROM ghcr.io/daemonless/nginx-base:${BASE_VERSION}
 
 ARG FREEBSD_ARCH=amd64
 ARG PACKAGES="vaultwarden vaultwarden_web-vault"
+ARG UPSTREAM_URL="https://api.github.com/repos/dani-garcia/vaultwarden/releases/latest"
+ARG UPSTREAM_JQ=".tag_name"
 
 LABEL org.opencontainers.image.title="Vaultwarden" \
     org.opencontainers.image.description="Vaultwarden (Bitwarden compatible backend) on FreeBSD" \
@@ -15,6 +17,8 @@ LABEL org.opencontainers.image.title="Vaultwarden" \
     io.daemonless.pkg-source="containerfile" \
     io.daemonless.base="nginx" \
     io.daemonless.category="Utilities" \
+    io.daemonless.upstream-url="${UPSTREAM_URL}" \
+    io.daemonless.upstream-jq="${UPSTREAM_JQ}" \
     io.daemonless.packages="${PACKAGES}"
 
 # Install Vaultwarden and Web Vault from packages
