@@ -15,7 +15,6 @@ LABEL org.opencontainers.image.title="Vaultwarden" \
     io.daemonless.pkg-source="containerfile" \
     io.daemonless.base="nginx" \
     io.daemonless.category="Utilities" \
-    io.daemonless.upstream-mode="pkg" \
     io.daemonless.packages="${PACKAGES}"
 
 # Install Vaultwarden and Web Vault from packages
