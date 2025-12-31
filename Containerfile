@@ -5,6 +5,9 @@ ARG FREEBSD_ARCH=amd64
 ARG PACKAGES="vaultwarden vaultwarden_web-vault"
 ARG UPSTREAM_URL="https://api.github.com/repos/dani-garcia/vaultwarden/releases/latest"
 ARG UPSTREAM_JQ=".tag_name"
+ARG HEALTHCHECK_ENDPOINT="http://localhost:80/daemonless-ping"
+
+ENV HEALTHCHECK_URL="${HEALTHCHECK_ENDPOINT}"
 
 LABEL org.opencontainers.image.title="Vaultwarden" \
     org.opencontainers.image.description="Vaultwarden (Bitwarden compatible backend) on FreeBSD" \
@@ -19,6 +22,7 @@ LABEL org.opencontainers.image.title="Vaultwarden" \
     io.daemonless.category="Utilities" \
     io.daemonless.upstream-url="${UPSTREAM_URL}" \
     io.daemonless.upstream-jq="${UPSTREAM_JQ}" \
+    io.daemonless.healthcheck-url="${HEALTHCHECK_ENDPOINT}" \
     io.daemonless.packages="${PACKAGES}"
 
 # Install Vaultwarden and Web Vault from packages
