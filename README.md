@@ -1,38 +1,17 @@
-# vaultwarden
+# Vaultwarden
 
-Bitwarden compatible backend server written in Rust, running natively on FreeBSD.
+Vaultwarden (Bitwarden compatible backend) on FreeBSD.
 
-## Environment Variables
+| | |
+|---|---|
+| **Port** | 8080 |
+| **Registry** | `ghcr.io/daemonless/vaultwarden` |
+| **Source** | [https://github.com/dani-garcia/vaultwarden](https://github.com/dani-garcia/vaultwarden) |
+| **Website** | [https://github.com/dani-garcia/vaultwarden](https://github.com/dani-garcia/vaultwarden) |
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| `PUID` | User ID for the application process | `1000` |
-| `PGID` | Group ID for the application process | `1000` |
-| `TZ` | Timezone for the container | `UTC` |
-| `S6_LOG_ENABLE` | Enable/Disable file logging | `1` |
-| `S6_LOG_MAX_SIZE` | Max size per log file (bytes) | `1048576` |
-| `S6_LOG_MAX_FILES` | Number of rotated log files to keep | `10` |
+## Deployment
 
-## Logging
-
-This image uses `s6-log` for internal log rotation.
-- **System Logs**: Captured from console and stored at `/config/logs/daemonless/vaultwarden/`.
-- **Application Logs**: Managed by the app and typically found in `/config/logs/`.
-- **Podman Logs**: Output is mirrored to the console, so `podman logs` still works.
-
-## Quick Start
-
-```bash
-podman run -d --name vaultwarden \
-  -p 80:80 \
-  -e PUID=1000 -e PGID=1000 \
-  -v /path/to/config:/config \
-  ghcr.io/daemonless/vaultwarden:latest
-```
-
-Access at: http://localhost
-
-## podman-compose
+### Podman Compose
 
 ```yaml
 services:
@@ -42,47 +21,73 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=America/New_York
+      - TZ=UTC
+      - SIGNUPS_ALLOWED=true
     volumes:
-      - /data/config/vaultwarden:/config
+      - /path/to/containers/vaultwarden:/config
     ports:
-      - 80:80
+      - 8080:8080
     restart: unless-stopped
 ```
 
-## Tags
+### Podman CLI
 
-| Tag | Source | Description |
-|-----|--------|-------------|
-| `:latest` | [Upstream Releases](https://github.com/dani-garcia/vaultwarden/releases) | Latest upstream release |
+```bash
+podman run -d --name vaultwarden \
+  -p 8080:8080 \
+  -e PUID=@PUID@ \
+  -e PGID=@PGID@ \
+  -e TZ=@TZ@ \
+  -e SIGNUPS_ALLOWED=true \
+  -v /path/to/containers/vaultwarden:/config \ 
+  ghcr.io/daemonless/vaultwarden:latest
+```
+Access at: `http://localhost:8080`
 
-## Environment Variables
+### Ansible
+
+```yaml
+- name: Deploy vaultwarden
+  containers.podman.podman_container:
+    name: vaultwarden
+    image: ghcr.io/daemonless/vaultwarden:latest
+    state: started
+    restart_policy: always
+    env:
+      PUID: "1000"
+      PGID: "1000"
+      TZ: "UTC"
+      SIGNUPS_ALLOWED: "true"
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/path/to/containers/vaultwarden:/config"
+```
+
+## Configuration
+
+### Environment Variables
 
 | Variable | Default | Description |
 |----------|---------|-------------|
-| `PUID` | 1000 | User ID for app |
-| `PGID` | 1000 | Group ID for app |
-| `TZ` | UTC | Timezone |
+| `PUID` | `1000` | User ID for the application process |
+| `PGID` | `1000` | Group ID for the application process |
+| `TZ` | `UTC` | Timezone for the container |
+| `SIGNUPS_ALLOWED` | `true` | Enable/disable user registration (true/false) |
 
-## Volumes
+### Volumes
 
 | Path | Description |
 |------|-------------|
-| `/config` | Configuration and data directory |
+| `/config` | Data directory (database, attachments, icons) |
 
-## Ports
+### Ports
 
-| Port | Description |
-|------|-------------|
-| 80 | Web UI |
+| Port | Protocol | Description |
+|------|----------|-------------|
+| `8080` | TCP |  |
 
 ## Notes
 
-- **User:** `bsd` (UID/GID set via PUID/PGID, default 1000)
-- **Base:** Built on `ghcr.io/daemonless/nginx-base-image` (FreeBSD)
-- **Proxy:** Includes a built-in Nginx reverse proxy to serve the Web Vault.
-
-## Links
-
-- [Website](https://github.com/dani-garcia/vaultwarden)
-- [FreshPorts](https://www.freshports.org/security/vaultwarden/)
+- **User:** `bsd` (UID/GID set via PUID/PGID)
+- **Base:** Built on `ghcr.io/daemonless/base` (FreeBSD)

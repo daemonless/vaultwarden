@@ -1,0 +1,42 @@
+name: vaultwarden
+
+x-daemonless:
+  title: "Vaultwarden"
+  icon: ":simple-bitwarden:"
+  category: "Utilities"
+  description: "Vaultwarden (Bitwarden compatible backend) on FreeBSD."
+  upstream_url: "https://github.com/dani-garcia/vaultwarden"
+  web_url: "https://github.com/dani-garcia/vaultwarden"
+  freshports_url: "https://www.freshports.org/security/vaultwarden/"
+  user: "bsd"
+  mlock: false
+  
+  docs:
+    env:
+      PUID: "User ID for the application process"
+      PGID: "Group ID for the application process"
+      TZ: "Timezone for the container"
+      SIGNUPS_ALLOWED: "Enable/disable user registration (true/false)"
+      INVITATIONS_ALLOWED: "Enable/disable user invitations (true/false)"
+    volumes:
+      /config: "Data directory (database, attachments, icons)"
+    ports:
+      80: "Web UI"
+
+services:
+  vaultwarden:
+    image: ghcr.io/daemonless/vaultwarden:latest
+    container_name: vaultwarden
+    restart: unless-stopped
+    
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=UTC
+      - SIGNUPS_ALLOWED=true
+
+    volumes:
+      - /path/to/containers/vaultwarden:/config
+
+    ports:
+      - "8080:80"
