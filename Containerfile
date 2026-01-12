@@ -5,7 +5,7 @@ ARG FREEBSD_ARCH=amd64
 ARG PACKAGES="vaultwarden vaultwarden_web-vault"
 ARG UPSTREAM_URL="https://api.github.com/repos/dani-garcia/vaultwarden/releases/latest"
 ARG UPSTREAM_JQ=".tag_name"
-ARG HEALTHCHECK_ENDPOINT="http://localhost:8080/daemonless-ping"
+ARG HEALTHCHECK_ENDPOINT="http://localhost:80/daemonless-ping"
 
 ENV HEALTHCHECK_URL="${HEALTHCHECK_ENDPOINT}"
 
@@ -18,7 +18,7 @@ LABEL org.opencontainers.image.title="Vaultwarden" \
       org.opencontainers.image.vendor="daemonless" \
       org.opencontainers.image.authors="daemonless" \
       io.daemonless.category="Utilities" \
-      io.daemonless.port="8080" \
+      io.daemonless.port="80" \
       io.daemonless.volumes="/config" \
       io.daemonless.arch="${FREEBSD_ARCH}" \
       io.daemonless.pkg-source="containerfile" \
@@ -58,7 +58,7 @@ COPY root/ /
 RUN chmod +x /etc/services.d/vaultwarden/run /etc/cont-init.d/* 2>/dev/null || true
 
 # --- Expose (Injected by Generator) ---
-EXPOSE 8080
+EXPOSE 80
 
 # --- Volumes (Injected by Generator) ---
 VOLUME /config

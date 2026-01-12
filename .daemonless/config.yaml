@@ -1,4 +1,4 @@
 icon: ':simple-bitwarden:'
 cit:
   mode: screenshot
-  port: 8080
+  port: 80
