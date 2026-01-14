@@ -54,9 +54,9 @@ Access at: `http://localhost:8080`
     state: started
     restart_policy: always
     env:
-      PUID: "1000"
-      PGID: "1000"
-      TZ: "UTC"
+      PUID: "@PUID@"
+      PGID: "@PGID@"
+      TZ: "@TZ@"
       SIGNUPS_ALLOWED: "true"
     ports:
       - "8080:8080"
@@ -65,7 +65,6 @@ Access at: `http://localhost:8080`
 ```
 
 ## Configuration
-
 ### Environment Variables
 
 | Variable | Default | Description |
@@ -74,13 +73,11 @@ Access at: `http://localhost:8080`
 | `PGID` | `1000` | Group ID for the application process |
 | `TZ` | `UTC` | Timezone for the container |
 | `SIGNUPS_ALLOWED` | `true` | Enable/disable user registration (true/false) |
-
 ### Volumes
 
 | Path | Description |
 |------|-------------|
 | `/config` | Data directory (database, attachments, icons) |
-
 ### Ports
 
 | Port | Protocol | Description |
