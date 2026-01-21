@@ -11,6 +11,7 @@ Vaultwarden (Bitwarden compatible backend) on FreeBSD.
 |---|---|
 | **Port** | 8080 |
 | **Registry** | `ghcr.io/daemonless/vaultwarden` |
+| **Docs** | [daemonless.io/images/vaultwarden](https://daemonless.io/images/vaultwarden/) |
 | **Source** | [https://github.com/dani-garcia/vaultwarden](https://github.com/dani-garcia/vaultwarden) |
 | **Website** | [https://github.com/dani-garcia/vaultwarden](https://github.com/dani-garcia/vaultwarden) |
 
