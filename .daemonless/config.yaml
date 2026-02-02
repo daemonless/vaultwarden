@@ -2,5 +2,5 @@ icon: ':simple-bitwarden:'
 cit:
   mode: screenshot
   port: 80
-versions:
+build:
   pkg_name: vaultwarden
