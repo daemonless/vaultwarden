@@ -1,11 +1,11 @@
 {
   "image": "vaultwarden",
-  "generated": "2026-02-02T11:07:57Z",
+  "generated": "2026-02-02T13:50:32Z",
   "tags": {
     "pkg-latest": {
       "app_version": "1.35.2_1",
       "source": "freebsd-latest",
-      "generated": "2026-02-02T11:06:11Z",
+      "generated": "2026-02-02T13:40:19Z",
       "packages": {
         "freebsd": [
           {
@@ -314,7 +314,7 @@
     "pkg": {
       "app_version": "1.35.2",
       "source": "freebsd-quarterly",
-      "generated": "2026-02-02T11:07:47Z",
+      "generated": "2026-02-02T13:50:09Z",
       "packages": {
         "freebsd": [
           {
