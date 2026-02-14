@@ -1,12 +1,12 @@
 {
   "image": "vaultwarden",
-  "generated": "2026-02-14T10:02:46Z",
+  "generated": "2026-02-14T14:45:30Z",
   "tags": {
     "pkg-latest": {
       "arch": "amd64",
       "app_version": "1.35.3",
       "source": "pkg",
-      "generated": "2026-02-14T10:02:25Z",
+      "generated": "2026-02-14T14:41:36Z",
       "packages": {
         "freebsd": [
           {
@@ -324,7 +324,7 @@
       "arch": "amd64",
       "app_version": "1.35.2",
       "source": "pkg",
-      "generated": "2026-02-14T10:02:34Z",
+      "generated": "2026-02-14T14:43:09Z",
       "packages": {
         "freebsd": [
           {
