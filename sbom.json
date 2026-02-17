@@ -1,12 +1,12 @@
 {
   "image": "vaultwarden",
-  "generated": "2026-02-14T14:45:30Z",
+  "generated": "2026-02-17T20:06:27Z",
   "tags": {
     "pkg-latest": {
       "arch": "amd64",
       "app_version": "1.35.3",
       "source": "pkg",
-      "generated": "2026-02-14T14:41:36Z",
+      "generated": "2026-02-17T20:06:11Z",
       "packages": {
         "freebsd": [
           {
@@ -235,7 +235,7 @@
           },
           {
             "name": "nginx",
-            "version": "1.28.0_11,3"
+            "version": "1.28.2_11,3"
           },
           {
             "name": "oniguruma",
@@ -259,7 +259,7 @@
           },
           {
             "name": "postgresql17-client",
-            "version": "17.7_2"
+            "version": "17.8_2"
           },
           {
             "name": "psutils",
@@ -324,7 +324,7 @@
       "arch": "amd64",
       "app_version": "1.35.2",
       "source": "pkg",
-      "generated": "2026-02-14T14:43:09Z",
+      "generated": "2026-02-17T20:05:04Z",
       "packages": {
         "freebsd": [
           {
