@@ -1,12 +1,12 @@
 {
   "image": "vaultwarden",
-  "generated": "2026-03-02T22:16:10Z",
+  "generated": "2026-03-23T21:34:49Z",
   "tags": {
     "pkg-latest": {
       "arch": "amd64",
       "app_version": "1.35.4",
       "source": "pkg",
-      "generated": "2026-03-02T22:15:47Z",
+      "generated": "2026-03-23T21:34:32Z",
       "packages": {
         "freebsd": [
           {
@@ -155,7 +155,7 @@
           },
           {
             "name": "groff",
-            "version": "1.23.0_5"
+            "version": "1.24.1"
           },
           {
             "name": "hidapi",
@@ -243,7 +243,7 @@
           },
           {
             "name": "openldap26-client",
-            "version": "2.6.12"
+            "version": "2.6.13"
           },
           {
             "name": "pcre2",
@@ -251,15 +251,15 @@
           },
           {
             "name": "perl5",
-            "version": "5.42.0_1"
+            "version": "5.42.1"
           },
           {
             "name": "pkg",
-            "version": "2.5.1"
+            "version": "2.6.2_1"
           },
           {
-            "name": "postgresql17-client",
-            "version": "17.9"
+            "name": "postgresql18-client",
+            "version": "18.3"
           },
           {
             "name": "psutils",
@@ -324,7 +324,7 @@
       "arch": "amd64",
       "app_version": "1.35.2",
       "source": "pkg",
-      "generated": "2026-03-02T22:15:59Z",
+      "generated": "2026-03-23T21:34:36Z",
       "packages": {
         "freebsd": [
           {
@@ -577,7 +577,7 @@
           },
           {
             "name": "postgresql17-client",
-            "version": "17.7_2"
+            "version": "17.9"
           },
           {
             "name": "psutils",
