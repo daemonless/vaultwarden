@@ -5,15 +5,29 @@ Source: dbuild templates
 
 # Vaultwarden
 
-Vaultwarden (Bitwarden compatible backend) on FreeBSD.
+[![Build Status](https://img.shields.io/github/actions/workflow/status/daemonless/vaultwarden/build.yaml?style=flat-square&label=Build&color=green)](https://github.com/daemonless/vaultwarden/actions)
+[![Last Commit](https://img.shields.io/github/last-commit/daemonless/vaultwarden?style=flat-square&label=Last+Commit&color=blue)](https://github.com/daemonless/vaultwarden/commits)
+
+Lightweight Bitwarden-compatible password manager server — self-host your passwords, secrets, and secure notes.
+
 
 | | |
 |---|---|
-| **Port** | 8080 |
+| **Port** | 80 |
 | **Registry** | `ghcr.io/daemonless/vaultwarden` |
-| **Docs** | [daemonless.io/images/vaultwarden](https://daemonless.io/images/vaultwarden/) |
 | **Source** | [https://github.com/dani-garcia/vaultwarden](https://github.com/dani-garcia/vaultwarden) |
 | **Website** | [https://github.com/dani-garcia/vaultwarden](https://github.com/dani-garcia/vaultwarden) |
+
+## Version Tags
+
+| Tag | Description | Best For |
+| :--- | :--- | :--- |
+| `latest` / `pkg` | **FreeBSD Quarterly**. Uses stable, tested packages. | Most users. Matches Linux Docker behavior. |
+| `pkg-latest` | **FreeBSD Latest**. Rolling package updates. | Newest FreeBSD packages. |
+
+## Prerequisites
+
+Before deploying, ensure your host environment is ready. See the [Quick Start Guide](https://daemonless.io/guides/quick-start) for host setup instructions.
 
 ## Deployment
 
@@ -30,25 +44,70 @@ services:
       - TZ=UTC
       - SIGNUPS_ALLOWED=true
     volumes:
-      - /path/to/containers/vaultwarden:/config
+      - "/path/to/containers/vaultwarden:/config"
     ports:
-      - 8080:8080
+      - 80:80
     restart: unless-stopped
+```
+
+### AppJail Director
+
+**.env**:
+
+```
+DIRECTOR_PROJECT=vaultwarden
+PUID=1000
+PGID=1000
+TZ=UTC
+SIGNUPS_ALLOWED=true
+```
+
+**appjail-director.yml**:
+
+```yaml
+options:
+  - virtualnet: ':<random> default'
+  - nat:
+services:
+  vaultwarden:
+    name: vaultwarden
+    options:
+      - container: 'boot args:--pull'
+    oci:
+      user: root
+      environment:
+        - PUID: !ENV '${PUID}'
+        - PGID: !ENV '${PGID}'
+        - TZ: !ENV '${TZ}'
+        - SIGNUPS_ALLOWED: !ENV '${SIGNUPS_ALLOWED}'
+    volumes:
+      - vaultwarden: /config
+volumes:
+  vaultwarden:
+    device: '/path/to/containers/vaultwarden'
+```
+
+**Makejail**:
+
+```
+ARG tag=latest
+
+OPTION overwrite=force
+OPTION from=ghcr.io/daemonless/vaultwarden:${tag}
 ```
 
 ### Podman CLI
 
 ```bash
 podman run -d --name vaultwarden \
-  -p 8080:8080 \
-  -e PUID=@PUID@ \
-  -e PGID=@PGID@ \
-  -e TZ=@TZ@ \
+  -p 80:80 \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=UTC \
   -e SIGNUPS_ALLOWED=true \
   -v /path/to/containers/vaultwarden:/config \
   ghcr.io/daemonless/vaultwarden:latest
 ```
-Access at: `http://localhost:8080`
 
 ### Ansible
 
@@ -60,17 +119,20 @@ Access at: `http://localhost:8080`
     state: started
     restart_policy: always
     env:
-      PUID: "@PUID@"
-      PGID: "@PGID@"
-      TZ: "@TZ@"
+      PUID: "1000"
+      PGID: "1000"
+      TZ: "UTC"
       SIGNUPS_ALLOWED: "true"
     ports:
-      - "8080:8080"
+      - "80:80"
     volumes:
       - "/path/to/containers/vaultwarden:/config"
 ```
 
-## Configuration
+Access at: `http://localhost:80`
+
+## Parameters
+
 ### Environment Variables
 
 | Variable | Default | Description |
@@ -79,19 +141,23 @@ Access at: `http://localhost:8080`
 | `PGID` | `1000` | Group ID for the application process |
 | `TZ` | `UTC` | Timezone for the container |
 | `SIGNUPS_ALLOWED` | `true` | Enable/disable user registration (true/false) |
+
 ### Volumes
 
 | Path | Description |
 |------|-------------|
 | `/config` | Data directory (database, attachments, icons) |
+
 ### Ports
 
 | Port | Protocol | Description |
 |------|----------|-------------|
-| `8080` | TCP |  |
+| `80` | TCP | Web UI |
 
-## Notes
+**Architectures:** amd64
+**User:** `bsd` (UID/GID via PUID/PGID, defaults to 1000:1000)
+**Base:** FreeBSD 15.0
 
-- **Architectures:** amd64
-- **User:** `bsd` (UID/GID set via PUID/PGID)
-- **Base:** Built on `ghcr.io/daemonless/base` (FreeBSD)
+---
+
+Need help? Join our [Discord](https://discord.gg/Kb9tkhecZT) community.

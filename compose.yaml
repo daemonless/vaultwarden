@@ -4,13 +4,14 @@ x-daemonless:
   title: "Vaultwarden"
   icon: ":simple-bitwarden:"
   category: "Utilities"
-  description: "Vaultwarden (Bitwarden compatible backend) on FreeBSD."
+  description: "Lightweight Bitwarden-compatible password manager server — self-host your passwords, secrets, and secure notes."
   upstream_url: "https://github.com/dani-garcia/vaultwarden"
   web_url: "https://github.com/dani-garcia/vaultwarden"
   freshports_url: "https://www.freshports.org/security/vaultwarden/"
   user: "bsd"
   mlock: false
-  
+  appjail: true
+
   docs:
     env:
       PUID: "User ID for the application process"
@@ -39,4 +40,4 @@ services:
       - /path/to/containers/vaultwarden:/config
 
     ports:
-      - "8080:80"
+      - "80:80"
