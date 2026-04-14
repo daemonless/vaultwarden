@@ -1,0 +1,116 @@
+ARG BASE_VERSION=15
+ARG UPSTREAM_URL="https://api.github.com/repos/dani-garcia/vaultwarden/releases/latest"
+ARG UPSTREAM_JQ=".tag_name"
+
+FROM ghcr.io/daemonless/base:${BASE_VERSION} AS builder
+ARG UPSTREAM_URL
+ARG UPSTREAM_JQ
+
+RUN echo APP_VERSION=$(fetch -qo - "${UPSTREAM_URL}" | jq -r "${UPSTREAM_JQ}") > /version
+
+# Install build tools
+RUN pkg update && pkg install -y FreeBSD-set-devel rust
+
+# Install build dependencies
+RUN pkg install -y mysql84-client postgresql18-client zstd
+
+RUN . /version && fetch -qo /tmp/vaultwarden.tar.gz "https://github.com/dani-garcia/vaultwarden/archive/refs/tags/${APP_VERSION}.tar.gz"
+RUN mkdir /src && \
+    tar -C /src -xzf /tmp/vaultwarden.tar.gz --strip-components 1
+
+WORKDIR /src
+
+RUN . /version && VW_VERSION=${APP_VERSION} cargo build --features sqlite,postgresql,mysql --release
+
+
+FROM ghcr.io/daemonless/nginx-base:${BASE_VERSION}
+ARG UPSTREAM_URL="https://api.github.com/repos/dani-garcia/bw_web_builds/releases/latest"
+ARG UPSTREAM_JQ
+ARG FREEBSD_ARCH=amd64
+ARG PACKAGES="postgresql18-client mysql84-client capnproto zstd"
+{%- if ports %}
+ARG HEALTHCHECK_ENDPOINT="http://localhost:{{ ports[0].port }}/daemonless-ping"
+{%- else %}
+ARG HEALTHCHECK_ENDPOINT="http://localhost:80/daemonless-ping"
+{%- endif %}
+
+ENV HEALTHCHECK_URL="${HEALTHCHECK_ENDPOINT}"
+
+# --- Metadata (Injected by Generator) ---
+LABEL org.opencontainers.image.title="{{ title }}" \
+      org.opencontainers.image.description="{{ description }}" \
+      org.opencontainers.image.source="{{ repo_url }}" \
+      org.opencontainers.image.url="{{ web_url }}" \
+      org.opencontainers.image.licenses="AGPL-3.0" \
+      org.opencontainers.image.vendor="daemonless" \
+      org.opencontainers.image.authors="daemonless" \
+      io.daemonless.category="{{ category }}" \
+{%- if ports %}
+      io.daemonless.port="{{ ports[0].port }}" \
+{%- endif %}
+{%- if volumes %}
+      io.daemonless.volumes="{{ volumes | map(attribute='path') | join(',') }}" \
+{%- endif %}
+{%- if mlock %}
+      org.freebsd.jail.allow.mlock="required" \
+{%- endif %}
+      io.daemonless.arch="${FREEBSD_ARCH}" \
+      io.daemonless.base="nginx" \
+      io.daemonless.upstream-url="${UPSTREAM_URL}" \
+      io.daemonless.upstream-jq="${UPSTREAM_JQ}" \
+      io.daemonless.healthcheck-url="${HEALTHCHECK_ENDPOINT}" \
+      io.daemonless.packages="${PACKAGES}"
+
+# Copy executable from build stage
+COPY --from=builder /src/target/release/vaultwarden /usr/local/bin/vaultwarden
+RUN chmod a+x /usr/local/bin/vaultwarden
+
+# Install dependencies and Vaultwarden Web Vault from packages
+RUN pkg update && \
+    pkg install -y \
+    ${PACKAGES} && \
+    pkg clean -ay && \
+    rm -rf /var/cache/pkg/* /var/db/pkg/repos/*
+
+# Create config and app directories and set permissions
+RUN mkdir -p /config /app && \
+    chown -R bsd:bsd /config /app
+
+# Copy version information from build stage and store in /app/version
+COPY --from=builder /version /tmp/version
+RUN . /tmp/version && echo ${APP_VERSION} > /app/version
+
+# Get latest version of the Web Vault
+RUN WV_VERSION=$(fetch -qo - "${UPSTREAM_URL}" | jq -r "${UPSTREAM_JQ}") && \
+    fetch -qo /tmp/webvault.tar.gz "https://github.com/dani-garcia/bw_web_builds/releases/download/${WV_VERSION}/bw_web_${WV_VERSION}.tar.gz"
+RUN mkdir -m 0755 -p /usr/local/www/vaultwarden && \
+    tar -C /usr/local/www/vaultwarden -xzf /tmp/webvault.tar.gz && \
+    chown -R bsd:bsd /usr/local/www/vaultwarden && \
+    rm -f /tmp/webvault.tar.gz
+
+# Symlink web-vault to the expected location if needed, 
+# though standard FreeBSD path is /usr/local/www/vaultwarden/web-vault
+RUN ln -sf /usr/local/www/vaultwarden/web-vault /web-vault
+
+# Environment defaults
+ENV DATA_FOLDER=/config \
+    WEB_VAULT_FOLDER=/usr/local/www/vaultwarden/web-vault \
+    WEB_VAULT_ENABLED=true \
+    ROCKET_ADDRESS=127.0.0.1 \
+    ROCKET_PORT=8080
+
+# Copy service definition and nginx config
+COPY root/ /
+
+# Make scripts executable
+RUN chmod +x /etc/services.d/vaultwarden/run /etc/cont-init.d/* 2>/dev/null || true
+
+# --- Expose (Injected by Generator) ---
+{%- if ports %}
+EXPOSE {{ ports | map(attribute='port') | join(' ') }}
+{%- endif %}
+
+# --- Volumes (Injected by Generator) ---
+{%- if volumes %}
+VOLUME {{ volumes | map(attribute='path') | join(' ') }}
+{%- endif %}
