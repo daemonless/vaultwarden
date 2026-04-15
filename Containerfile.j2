@@ -24,8 +24,9 @@ RUN . /version && VW_VERSION=${APP_VERSION} cargo build --features sqlite,postgr
 
 
 FROM ghcr.io/daemonless/nginx-base:${BASE_VERSION}
-ARG UPSTREAM_URL="https://api.github.com/repos/dani-garcia/bw_web_builds/releases/latest"
-ARG UPSTREAM_JQ
+ARG UPSTREAM_URL="https://api.github.com/repos/dani-garcia/vaultwarden/releases/latest"
+ARG UPSTREAM_JQ=".tag_name"
+ARG WEBVAULT_URL="https://api.github.com/repos/dani-garcia/bw_web_builds/releases/latest"
 ARG FREEBSD_ARCH=amd64
 ARG PACKAGES="postgresql18-client mysql84-client capnproto zstd"
 {%- if ports %}
@@ -81,7 +82,7 @@ COPY --from=builder /version /tmp/version
 RUN . /tmp/version && echo ${APP_VERSION} > /app/version
 
 # Get latest version of the Web Vault
-RUN WV_VERSION=$(fetch -qo - "${UPSTREAM_URL}" | jq -r "${UPSTREAM_JQ}") && \
+RUN WV_VERSION=$(fetch -qo - "${WEBVAULT_URL}" | jq -r "${UPSTREAM_JQ}") && \
     fetch -qo /tmp/webvault.tar.gz "https://github.com/dani-garcia/bw_web_builds/releases/download/${WV_VERSION}/bw_web_${WV_VERSION}.tar.gz"
 RUN mkdir -m 0755 -p /usr/local/www/vaultwarden && \
     tar -C /usr/local/www/vaultwarden -xzf /tmp/webvault.tar.gz && \
