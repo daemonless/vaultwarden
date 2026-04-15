@@ -5,9 +5,10 @@ cit:
 build:
   pkg_name: vaultwarden
   variants:
+    - tag: latest
+      containerfile: Containerfile
     - tag: pkg
       containerfile: Containerfile.pkg
-      aliases: ["latest"]
       default: true
     - tag: pkg-latest
       containerfile: Containerfile.pkg
