@@ -24,8 +24,8 @@ RUN . /version && VW_VERSION=${APP_VERSION} cargo build --features sqlite,postgr
 
 
 FROM ghcr.io/daemonless/nginx-base:${BASE_VERSION}
-ARG UPSTREAM_URL="https://api.github.com/repos/dani-garcia/vaultwarden/releases/latest"
-ARG UPSTREAM_JQ=".tag_name"
+ARG UPSTREAM_URL
+ARG UPSTREAM_JQ
 ARG WEBVAULT_URL="https://api.github.com/repos/dani-garcia/bw_web_builds/releases/latest"
 ARG FREEBSD_ARCH=amd64
 ARG PACKAGES="postgresql18-client mysql84-client capnproto zstd"
