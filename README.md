@@ -23,16 +23,12 @@ Lightweight Bitwarden-compatible password manager server — self-host your pass
 | :--- | :--- | :--- |
 | `latest` | **Upstream Binary**. Built from official release. | Alternative build. |
 | `pkg` | **FreeBSD Quarterly**. Uses stable, tested packages. | Most users. Matches Linux Docker behavior. |
-| `pkg-latest` | **FreeBSD Latest**. Rolling package updates. | Newest FreeBSD packages. |
-
 
 ## Prerequisites
 
 Before deploying, ensure your host environment is ready. See the [Quick Start Guide](https://daemonless.io/guides/quick-start) for host setup instructions.
 
-
 ## Deployment
-
 
 ### Podman Compose
 
@@ -131,7 +127,6 @@ podman run -d --name vaultwarden \
     volumes:
       - "/path/to/containers/vaultwarden:/config"
 ```
-
 
 ## Parameters
 
