@@ -1,11 +1,11 @@
 {
-  "generated": "2026-04-07T15:23:37Z",
+  "generated": "2026-04-30T21:22:20Z",
   "image": "vaultwarden",
   "tags": {
-    "pkg": {
-      "app_version": "1.35.4_1",
+    "latest": {
+      "app_version": "1.35.8",
       "arch": "amd64",
-      "generated": "2026-04-07T15:08:23Z",
+      "generated": "2026-04-30T21:20:52Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -79,11 +79,11 @@
           },
           {
             "name": "FreeBSD-openssl",
-            "version": "15.0"
+            "version": "15.0p2"
           },
           {
             "name": "FreeBSD-openssl-lib",
-            "version": "15.0"
+            "version": "15.0p2"
           },
           {
             "name": "FreeBSD-pkg-bootstrap",
@@ -95,7 +95,7 @@
           },
           {
             "name": "FreeBSD-runtime",
-            "version": "15.0"
+            "version": "15.0p6"
           },
           {
             "name": "FreeBSD-tcpd",
@@ -139,7 +139,7 @@
           },
           {
             "name": "curl",
-            "version": "8.19.0_1"
+            "version": "8.19.0_2"
           },
           {
             "name": "cyrus-sasl",
@@ -147,15 +147,11 @@
           },
           {
             "name": "execline",
-            "version": "2.9.7.0"
+            "version": "2.9.8.1"
           },
           {
             "name": "gettext-runtime",
             "version": "1.0"
-          },
-          {
-            "name": "gmp",
-            "version": "6.3.0"
           },
           {
             "name": "groff",
@@ -203,7 +199,7 @@
           },
           {
             "name": "libnghttp2",
-            "version": "1.68.0"
+            "version": "1.68.1"
           },
           {
             "name": "libpaper",
@@ -230,12 +226,8 @@
             "version": "8.4.8"
           },
           {
-            "name": "nettle",
-            "version": "3.10.2"
-          },
-          {
             "name": "nginx",
-            "version": "1.28.0_10,3"
+            "version": "1.28.3,3"
           },
           {
             "name": "oniguruma",
@@ -271,27 +263,15 @@
           },
           {
             "name": "s6",
-            "version": "2.13.2.0"
-          },
-          {
-            "name": "s6-rc",
-            "version": "0.5.6.0"
+            "version": "2.14.0.1"
           },
           {
             "name": "skalibs",
-            "version": "2.14.4.0"
+            "version": "2.14.5.1"
           },
           {
             "name": "uchardet",
             "version": "0.0.8_1"
-          },
-          {
-            "name": "vaultwarden",
-            "version": "1.35.4_1"
-          },
-          {
-            "name": "vaultwarden_web-vault",
-            "version": "2026.1.1"
           },
           {
             "name": "zstd",
@@ -306,10 +286,10 @@
         "ruby": [],
         "rust": []
       },
-      "source": "pkg",
+      "source": "upstream",
       "summary": {
         "dotnet": 0,
-        "freebsd": 72,
+        "freebsd": 67,
         "go": 0,
         "java": 0,
         "node": 0,
@@ -317,13 +297,13 @@
         "python": 0,
         "ruby": 0,
         "rust": 0,
-        "total": 72
+        "total": 67
       }
     },
-    "pkg-latest": {
+    "pkg": {
       "app_version": "1.35.4_1",
       "arch": "amd64",
-      "generated": "2026-04-07T15:22:27Z",
+      "generated": "2026-04-30T20:59:29Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -397,11 +377,11 @@
           },
           {
             "name": "FreeBSD-openssl",
-            "version": "15.0"
+            "version": "15.0p2"
           },
           {
             "name": "FreeBSD-openssl-lib",
-            "version": "15.0"
+            "version": "15.0p2"
           },
           {
             "name": "FreeBSD-pkg-bootstrap",
@@ -413,7 +393,7 @@
           },
           {
             "name": "FreeBSD-runtime",
-            "version": "15.0"
+            "version": "15.0p6"
           },
           {
             "name": "FreeBSD-tcpd",
@@ -457,7 +437,7 @@
           },
           {
             "name": "curl",
-            "version": "8.19.0_1"
+            "version": "8.19.0_2"
           },
           {
             "name": "cyrus-sasl",
@@ -521,7 +501,7 @@
           },
           {
             "name": "libnghttp2",
-            "version": "1.68.0"
+            "version": "1.68.1"
           },
           {
             "name": "libpaper",
@@ -592,10 +572,6 @@
             "version": "2.14.0.1"
           },
           {
-            "name": "s6-rc",
-            "version": "0.6.0.0"
-          },
-          {
             "name": "skalibs",
             "version": "2.14.5.1"
           },
@@ -627,7 +603,7 @@
       "source": "pkg",
       "summary": {
         "dotnet": 0,
-        "freebsd": 72,
+        "freebsd": 71,
         "go": 0,
         "java": 0,
         "node": 0,
@@ -635,7 +611,7 @@
         "python": 0,
         "ruby": 0,
         "rust": 0,
-        "total": 72
+        "total": 71
       }
     }
   }
