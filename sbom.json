@@ -1,11 +1,11 @@
 {
-  "generated": "2026-05-03T16:48:40Z",
+  "generated": "2026-05-06T19:47:01Z",
   "image": "vaultwarden",
   "tags": {
     "latest": {
       "app_version": "1.36.0",
       "arch": "amd64",
-      "generated": "2026-05-03T16:47:21Z",
+      "generated": "2026-05-06T19:45:36Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -303,7 +303,7 @@
     "pkg": {
       "app_version": "1.35.4_1",
       "arch": "amd64",
-      "generated": "2026-05-03T16:26:16Z",
+      "generated": "2026-05-06T19:25:49Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -615,9 +615,9 @@
       }
     },
     "pkg-latest": {
-      "app_version": "1.35.6_1",
+      "app_version": "1.36.0",
       "arch": "amd64",
-      "generated": "2026-05-03T16:29:01Z",
+      "generated": "2026-05-06T19:25:58Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -751,7 +751,7 @@
           },
           {
             "name": "curl",
-            "version": "8.19.0_2"
+            "version": "8.20.0"
           },
           {
             "name": "cyrus-sasl",
@@ -895,11 +895,11 @@
           },
           {
             "name": "vaultwarden",
-            "version": "1.35.6_1"
+            "version": "1.36.0"
           },
           {
             "name": "vaultwarden_web-vault",
-            "version": "2026.1.1"
+            "version": "2026.4.1"
           },
           {
             "name": "zstd",
