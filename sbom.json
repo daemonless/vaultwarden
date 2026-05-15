@@ -1,11 +1,11 @@
 {
-  "generated": "2026-05-06T19:47:01Z",
+  "generated": "2026-05-15T23:31:24Z",
   "image": "vaultwarden",
   "tags": {
     "latest": {
       "app_version": "1.36.0",
       "arch": "amd64",
-      "generated": "2026-05-06T19:45:36Z",
+      "generated": "2026-05-15T23:30:07Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -95,7 +95,7 @@
           },
           {
             "name": "FreeBSD-runtime",
-            "version": "15.0p6"
+            "version": "15.0p8"
           },
           {
             "name": "FreeBSD-tcpd",
@@ -123,7 +123,7 @@
           },
           {
             "name": "FreeBSD-zoneinfo",
-            "version": "15.0"
+            "version": "15.0p7"
           },
           {
             "name": "brotli",
@@ -139,7 +139,7 @@
           },
           {
             "name": "curl",
-            "version": "8.19.0_2"
+            "version": "8.20.0"
           },
           {
             "name": "cyrus-sasl",
@@ -303,7 +303,7 @@
     "pkg": {
       "app_version": "1.35.4_1",
       "arch": "amd64",
-      "generated": "2026-05-06T19:25:49Z",
+      "generated": "2026-05-15T23:11:38Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -393,7 +393,7 @@
           },
           {
             "name": "FreeBSD-runtime",
-            "version": "15.0p6"
+            "version": "15.0p8"
           },
           {
             "name": "FreeBSD-tcpd",
@@ -421,7 +421,7 @@
           },
           {
             "name": "FreeBSD-zoneinfo",
-            "version": "15.0"
+            "version": "15.0p7"
           },
           {
             "name": "brotli",
@@ -437,7 +437,7 @@
           },
           {
             "name": "curl",
-            "version": "8.19.0_2"
+            "version": "8.20.0"
           },
           {
             "name": "cyrus-sasl",
@@ -617,7 +617,7 @@
     "pkg-latest": {
       "app_version": "1.36.0",
       "arch": "amd64",
-      "generated": "2026-05-06T19:25:58Z",
+      "generated": "2026-05-15T23:11:11Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -707,7 +707,7 @@
           },
           {
             "name": "FreeBSD-runtime",
-            "version": "15.0p6"
+            "version": "15.0p8"
           },
           {
             "name": "FreeBSD-tcpd",
@@ -735,7 +735,7 @@
           },
           {
             "name": "FreeBSD-zoneinfo",
-            "version": "15.0"
+            "version": "15.0p7"
           },
           {
             "name": "brotli",
@@ -747,7 +747,7 @@
           },
           {
             "name": "capnproto",
-            "version": "1.4.0"
+            "version": "1.4.0_1"
           },
           {
             "name": "curl",
@@ -763,7 +763,7 @@
           },
           {
             "name": "gettext-runtime",
-            "version": "1.0"
+            "version": "1.0_1"
           },
           {
             "name": "gmp",
@@ -847,7 +847,7 @@
           },
           {
             "name": "nginx",
-            "version": "1.28.3,3"
+            "version": "1.30.0,3"
           },
           {
             "name": "oniguruma",
