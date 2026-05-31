@@ -26,6 +26,9 @@ if [ ! -f /config/nginx/site.conf ]; then
     cp /defaults/site.conf /config/nginx/site.conf
 fi
 
+# Pre-create nginx logs so they're bsd-owned, not root (nginx master runs as root)
+touch /config/log/nginx/access.log /config/log/nginx/error.log
+
 # Set permissions
 chown -R bsd:bsd /config /var/log/nginx /var/log
 chown -R bsd:bsd /var/tmp/nginx 2>/dev/null || true
