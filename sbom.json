@@ -1,11 +1,11 @@
 {
-  "generated": "2026-05-21T08:12:58Z",
+  "generated": "2026-05-31T10:35:17Z",
   "image": "vaultwarden",
   "tags": {
     "latest": {
       "app_version": "1.36.0",
       "arch": "amd64",
-      "generated": "2026-05-21T08:11:42Z",
+      "generated": "2026-05-31T10:34:03Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -55,7 +55,7 @@
           },
           {
             "name": "FreeBSD-libcasper",
-            "version": "15.0"
+            "version": "15.0p9"
           },
           {
             "name": "FreeBSD-libcompiler_rt-dev",
@@ -103,7 +103,7 @@
           },
           {
             "name": "FreeBSD-runtime",
-            "version": "15.0p8"
+            "version": "15.0p9"
           },
           {
             "name": "FreeBSD-tcpd",
@@ -115,7 +115,7 @@
           },
           {
             "name": "FreeBSD-utilities",
-            "version": "15.0p1"
+            "version": "15.0p9"
           },
           {
             "name": "FreeBSD-xz-lib",
@@ -139,7 +139,7 @@
           },
           {
             "name": "ca_root_nss",
-            "version": "3.123.1"
+            "version": "3.124"
           },
           {
             "name": "capnproto",
@@ -231,11 +231,11 @@
           },
           {
             "name": "mysql84-client",
-            "version": "8.4.8"
+            "version": "8.4.9"
           },
           {
             "name": "nginx",
-            "version": "1.30.1,3"
+            "version": "1.30.2,3"
           },
           {
             "name": "oniguruma",
@@ -259,7 +259,7 @@
           },
           {
             "name": "postgresql18-client",
-            "version": "18.3"
+            "version": "18.4"
           },
           {
             "name": "psutils",
@@ -311,7 +311,7 @@
     "pkg": {
       "app_version": "1.35.4_1",
       "arch": "amd64",
-      "generated": "2026-05-21T07:51:40Z",
+      "generated": "2026-05-31T10:16:06Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -361,7 +361,7 @@
           },
           {
             "name": "FreeBSD-libcasper",
-            "version": "15.0"
+            "version": "15.0p9"
           },
           {
             "name": "FreeBSD-libcompiler_rt-dev",
@@ -409,7 +409,7 @@
           },
           {
             "name": "FreeBSD-runtime",
-            "version": "15.0p8"
+            "version": "15.0p9"
           },
           {
             "name": "FreeBSD-tcpd",
@@ -421,7 +421,7 @@
           },
           {
             "name": "FreeBSD-utilities",
-            "version": "15.0p1"
+            "version": "15.0p9"
           },
           {
             "name": "FreeBSD-xz-lib",
@@ -445,7 +445,7 @@
           },
           {
             "name": "ca_root_nss",
-            "version": "3.123.1"
+            "version": "3.124"
           },
           {
             "name": "capnproto",
@@ -541,7 +541,7 @@
           },
           {
             "name": "mysql84-client",
-            "version": "8.4.8"
+            "version": "8.4.9"
           },
           {
             "name": "nettle",
@@ -549,7 +549,7 @@
           },
           {
             "name": "nginx",
-            "version": "1.30.1,3"
+            "version": "1.30.2,3"
           },
           {
             "name": "oniguruma",
@@ -573,7 +573,7 @@
           },
           {
             "name": "postgresql18-client",
-            "version": "18.3"
+            "version": "18.4"
           },
           {
             "name": "psutils",
@@ -633,7 +633,7 @@
     "pkg-latest": {
       "app_version": "1.36.0",
       "arch": "amd64",
-      "generated": "2026-05-21T07:52:12Z",
+      "generated": "2026-05-31T10:15:42Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -683,7 +683,7 @@
           },
           {
             "name": "FreeBSD-libcasper",
-            "version": "15.0"
+            "version": "15.0p9"
           },
           {
             "name": "FreeBSD-libcompiler_rt-dev",
@@ -731,7 +731,7 @@
           },
           {
             "name": "FreeBSD-runtime",
-            "version": "15.0p8"
+            "version": "15.0p9"
           },
           {
             "name": "FreeBSD-tcpd",
@@ -743,7 +743,7 @@
           },
           {
             "name": "FreeBSD-utilities",
-            "version": "15.0p1"
+            "version": "15.0p9"
           },
           {
             "name": "FreeBSD-xz-lib",
@@ -767,7 +767,7 @@
           },
           {
             "name": "ca_root_nss",
-            "version": "3.123.1"
+            "version": "3.124"
           },
           {
             "name": "capnproto",
@@ -863,7 +863,7 @@
           },
           {
             "name": "mysql84-client",
-            "version": "8.4.8"
+            "version": "8.4.9"
           },
           {
             "name": "nettle",
@@ -871,7 +871,7 @@
           },
           {
             "name": "nginx",
-            "version": "1.30.1_1,3"
+            "version": "1.30.2_2,3"
           },
           {
             "name": "oniguruma",
@@ -927,7 +927,7 @@
           },
           {
             "name": "zstd",
-            "version": "1.5.7_1"
+            "version": "1.5.7_2"
           }
         ],
         "go": [],
