@@ -18,14 +18,13 @@ Lightweight Bitwarden-compatible password manager server — self-host your pass
 | **Website** | [https://github.com/dani-garcia/vaultwarden](https://github.com/dani-garcia/vaultwarden) |
 
 ## Version Tags
-
 | Tag | Description | Best For |
 | :--- | :--- | :--- |
 | `latest` | **Upstream Binary**. Built from official release. | Alternative build. |
 | `pkg` | **FreeBSD Quarterly**. Uses stable, tested packages. | Most users. Matches Linux Docker behavior. |
+| `pkg-latest` | **FreeBSD Latest**. Rolling package updates. | Newest FreeBSD packages. |
 
 ## Prerequisites
-
 Before deploying, ensure your host environment is ready. See the [Quick Start Guide](https://daemonless.io/guides/quick-start) for host setup instructions.
 
 ## Deployment
@@ -35,35 +34,40 @@ Before deploying, ensure your host environment is ready. See the [Quick Start Gu
 ```yaml
 services:
   vaultwarden:
-    image: ghcr.io/daemonless/vaultwarden:latest
+    image: "ghcr.io/daemonless/vaultwarden:latest"
     container_name: vaultwarden
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=UTC
-      - SIGNUPS_ALLOWED=true
+      - PUID=1000  # User ID for the application process
+      - PGID=1000  # Group ID for the application process
+      - TZ=UTC  # Timezone for the container
+      - SIGNUPS_ALLOWED=true  # Enable/disable user registration (true/false)
+      - INVITATIONS_ALLOWED=  # Enable/disable user invitations (true/false)
     volumes:
       - "/path/to/containers/vaultwarden:/config"
     ports:
-      - 80:80
+      - "80:80"
     restart: unless-stopped
 ```
 
 ### AppJail Director
-
 **.env**:
 
 ```
+# .env
+
 DIRECTOR_PROJECT=vaultwarden
 PUID=1000
 PGID=1000
 TZ=UTC
 SIGNUPS_ALLOWED=true
+INVITATIONS_ALLOWED=
 ```
 
 **appjail-director.yml**:
 
 ```yaml
+# appjail-director.yml
+
 options:
   - virtualnet: ':<random> default'
   - nat:
@@ -72,6 +76,7 @@ services:
     name: vaultwarden
     options:
       - container: 'boot args:--pull'
+      - expose: '80:80 proto:tcp' \
     oci:
       user: root
       environment:
@@ -79,6 +84,7 @@ services:
         - PGID: !ENV '${PGID}'
         - TZ: !ENV '${TZ}'
         - SIGNUPS_ALLOWED: !ENV '${SIGNUPS_ALLOWED}'
+        - INVITATIONS_ALLOWED: !ENV '${INVITATIONS_ALLOWED}'
     volumes:
       - vaultwarden: /config
 volumes:
@@ -89,11 +95,14 @@ volumes:
 **Makejail**:
 
 ```
+# Makejail
+
 ARG tag=latest
 
 OPTION overwrite=force
 OPTION from=ghcr.io/daemonless/vaultwarden:${tag}
 ```
+**Note**: Exposing ports in AppJail means that your service can be reached from remote hosts. If that is not your intention, do not expose the ports and communicate with the service using the IPv4 address assigned by the virtual network.
 
 ### Podman CLI
 
@@ -104,9 +113,29 @@ podman run -d --name vaultwarden \
   -e PGID=1000 \
   -e TZ=UTC \
   -e SIGNUPS_ALLOWED=true \
+  -e INVITATIONS_ALLOWED= \
   -v /path/to/containers/vaultwarden:/config \
   ghcr.io/daemonless/vaultwarden:latest
 ```
+
+### AppJail
+
+```bash
+appjail oci run -Pd \
+  -o overwrite=force \
+  -o container="args:--pull" \
+  -o virtualnet=":<random> default" \
+  -o nat \
+  -o expose="80:80 proto:tcp" \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=UTC \
+  -e SIGNUPS_ALLOWED=true \
+  -e INVITATIONS_ALLOWED= \
+  -o fstab="/path/to/containers/vaultwarden /config <pseudofs>" \
+  ghcr.io/daemonless/vaultwarden:latest vaultwarden
+```
+**Note**: Exposing ports in AppJail means that your service can be reached from remote hosts. If that is not your intention, do not expose the ports and communicate with the service using the IPv4 address assigned by the virtual network.
 
 ### Ansible
 
@@ -114,7 +143,7 @@ podman run -d --name vaultwarden \
 - name: Deploy vaultwarden
   containers.podman.podman_container:
     name: vaultwarden
-    image: ghcr.io/daemonless/vaultwarden:latest
+    image: "ghcr.io/daemonless/vaultwarden:latest"
     state: started
     restart_policy: always
     env:
@@ -122,11 +151,14 @@ podman run -d --name vaultwarden \
       PGID: "1000"
       TZ: "UTC"
       SIGNUPS_ALLOWED: "true"
+      INVITATIONS_ALLOWED: ""
     ports:
       - "80:80"
     volumes:
       - "/path/to/containers/vaultwarden:/config"
 ```
+
+Access at: `http://localhost:80`
 
 ## Parameters
 
@@ -138,6 +170,7 @@ podman run -d --name vaultwarden \
 | `PGID` | `1000` | Group ID for the application process |
 | `TZ` | `UTC` | Timezone for the container |
 | `SIGNUPS_ALLOWED` | `true` | Enable/disable user registration (true/false) |
+| `INVITATIONS_ALLOWED` | `` | Enable/disable user invitations (true/false) |
 
 ### Volumes
 
@@ -153,7 +186,7 @@ podman run -d --name vaultwarden \
 
 **Architectures:** amd64
 **User:** `bsd` (UID/GID via PUID/PGID, defaults to 1000:1000)
-**Base:** FreeBSD 15.0
+**Base:** FreeBSD 15
 
 ---
 
