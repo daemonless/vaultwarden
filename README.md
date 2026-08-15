@@ -21,8 +21,8 @@ Lightweight Bitwarden-compatible password manager server — self-host your pass
 | Tag | Description | Best For |
 | :--- | :--- | :--- |
 | `latest` | **Upstream Binary**. Built from official release. | Alternative build. |
-| `pkg` | **FreeBSD Quarterly**. Uses stable, tested packages. | Most users. Matches Linux Docker behavior. |
-| `pkg-latest` | **FreeBSD Latest**. Rolling package updates. | Newest FreeBSD packages. |
+| `pkg` | **FreeBSD Quarterly**. Uses stable, tested packages. | Most users — recommended. |
+| `pkg-latest` | **FreeBSD Latest**. Rolling package updates. | Staying current. |
 
 ## Prerequisites
 Before deploying, ensure your host environment is ready. See the [Quick Start Guide](https://daemonless.io/guides/quick-start) for host setup instructions.
@@ -76,7 +76,7 @@ services:
     name: vaultwarden
     options:
       - container: 'boot args:--pull'
-      - expose: '80:80 proto:tcp' \
+      - expose: '80:80 proto:tcp'
     oci:
       user: root
       environment:
