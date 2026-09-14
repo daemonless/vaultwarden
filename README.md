@@ -7,6 +7,7 @@ Source: dbuild templates
 
 [![Build Status](https://img.shields.io/github/actions/workflow/status/daemonless/vaultwarden/build.yaml?style=flat-square&label=Build&color=green)](https://github.com/daemonless/vaultwarden/actions)
 [![Last Commit](https://img.shields.io/github/last-commit/daemonless/vaultwarden?style=flat-square&label=Last+Commit&color=blue)](https://github.com/daemonless/vaultwarden/commits)
+[![OCI Pulls](https://img.shields.io/docker/pulls/daemonless/vaultwarden?style=flat-square&label=OCI+Pulls&color=blue)](https://hub.docker.com/r/daemonless/vaultwarden)
 
 Lightweight Bitwarden-compatible password manager server — self-host your passwords, secrets, and secure notes.
 
