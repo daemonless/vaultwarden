@@ -8,7 +8,8 @@ ARG BASE_VERSION=15
 ARG UPSTREAM_URL="https://api.github.com/repos/dani-garcia/vaultwarden/releases/latest"
 ARG UPSTREAM_JQ=".tag_name"
 
-FROM ghcr.io/daemonless/base:${BASE_VERSION} AS builder
+ARG BUILDER_BASE_VERSION=15-latest
+FROM ghcr.io/daemonless/base:${BUILDER_BASE_VERSION} AS builder
 ARG UPSTREAM_URL
 ARG UPSTREAM_JQ
 
