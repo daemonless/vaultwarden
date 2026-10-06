@@ -1,11 +1,11 @@
 {
-  "generated": "2026-10-03T00:04:35Z",
+  "generated": "2026-10-06T15:59:29Z",
   "image": "vaultwarden",
   "tags": {
     "latest": {
-      "app_version": "1.37.3",
+      "app_version": "1.37.4",
       "arch": "amd64",
-      "generated": "2026-10-03T00:03:44Z",
+      "generated": "2026-10-06T15:58:39Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -309,7 +309,7 @@
               "GPLv3+"
             ],
             "name": "groff",
-            "version": "1.24.1_1"
+            "version": "1.24.2"
           },
           {
             "licenses": [
@@ -555,7 +555,7 @@
     "pkg": {
       "app_version": "1.36.0_1",
       "arch": "amd64",
-      "generated": "2026-10-02T23:46:39Z",
+      "generated": "2026-10-06T15:38:46Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -866,7 +866,7 @@
               "GPLv3+"
             ],
             "name": "groff",
-            "version": "1.24.1_1"
+            "version": "1.24.2"
           },
           {
             "licenses": [
@@ -1132,9 +1132,9 @@
       }
     },
     "pkg-latest": {
-      "app_version": "1.37.2_1",
+      "app_version": "1.37.3",
       "arch": "amd64",
-      "generated": "2026-10-02T23:47:39Z",
+      "generated": "2026-10-06T15:37:30Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -1431,7 +1431,7 @@
               "GPLv3+"
             ],
             "name": "groff",
-            "version": "1.24.1_1"
+            "version": "1.24.2"
           },
           {
             "licenses": [
@@ -1604,14 +1604,14 @@
               "GPLv3"
             ],
             "name": "vaultwarden",
-            "version": "1.37.2_1"
+            "version": "1.37.3"
           },
           {
             "licenses": [
               "GPLv3"
             ],
             "name": "vaultwarden_web-vault",
-            "version": "2026.6.4"
+            "version": "2026.7.0"
           },
           {
             "licenses": [
