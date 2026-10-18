@@ -42,7 +42,7 @@ services:
       - PGID=1000  # Group ID for the application process
       - TZ=UTC  # Timezone for the container
       - SIGNUPS_ALLOWED=true  # Enable/disable user registration (true/false)
-      - INVITATIONS_ALLOWED=  # Enable/disable user invitations (true/false)
+      # - INVITATIONS_ALLOWED=  # Enable/disable user invitations (true/false)
     volumes:
       - "/containers/vaultwarden:/config"
     ports:
@@ -64,7 +64,6 @@ PUID=1000
 PGID=1000
 TZ=UTC
 SIGNUPS_ALLOWED=true
-INVITATIONS_ALLOWED=
 ```
 
 **appjail-director.yml**:
@@ -88,7 +87,6 @@ services:
         - PGID: !ENV '${PGID}'
         - TZ: !ENV '${TZ}'
         - SIGNUPS_ALLOWED: !ENV '${SIGNUPS_ALLOWED}'
-        - INVITATIONS_ALLOWED: !ENV '${INVITATIONS_ALLOWED}'
     volumes:
       - vaultwarden: /config
 volumes:
@@ -133,7 +131,6 @@ services:
       - PGID=1000
       - TZ=UTC
       - SIGNUPS_ALLOWED=true
-      - INVITATIONS_ALLOWED=
     volumes:
       - "/containers/vaultwarden:/config"
 ```
