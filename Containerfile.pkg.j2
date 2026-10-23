@@ -64,9 +64,7 @@ ENV DATA_FOLDER=/config \
 
 # Copy service definition and nginx config
 COPY root/ /
-
-# Make scripts executable
-RUN chmod +x /etc/services.d/vaultwarden/run /etc/cont-init.d/* 2>/dev/null || true
+RUN chmod +x /daemonless/libexec/* /daemonless/init.d/*
 
 # --- Expose (Injected by Generator) ---
 {%- if ports %}

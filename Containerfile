@@ -9,7 +9,7 @@ ARG UPSTREAM_URL="https://api.github.com/repos/dani-garcia/vaultwarden/releases/
 ARG UPSTREAM_JQ=".tag_name"
 
 ARG BUILDER_BASE_VERSION=15-latest
-FROM ghcr.io/daemonless/base:${BUILDER_BASE_VERSION} AS builder
+FROM ghcr.io/daemonless/base-exec:${BUILDER_BASE_VERSION} AS builder
 ARG UPSTREAM_URL
 ARG UPSTREAM_JQ
 
@@ -28,7 +28,6 @@ RUN mkdir /src && \
 WORKDIR /src
 
 RUN . /version && VW_VERSION=${APP_VERSION} cargo build --features sqlite,postgresql,mysql --release
-
 
 FROM ghcr.io/daemonless/nginx-base:${BASE_VERSION}
 ARG UPSTREAM_URL
@@ -98,9 +97,7 @@ ENV DATA_FOLDER=/config \
 
 # Copy service definition and nginx config
 COPY root/ /
-
-# Make scripts executable
-RUN chmod +x /etc/services.d/vaultwarden/run /etc/cont-init.d/* 2>/dev/null || true
+RUN chmod +x /daemonless/libexec/* /daemonless/init.d/*
 
 # --- Expose (Injected by Generator) ---
 EXPOSE 80
