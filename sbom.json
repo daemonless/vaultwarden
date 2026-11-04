@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-01T23:07:43Z",
+  "generated": "2026-11-04T08:35:08Z",
   "image": "vaultwarden",
   "tags": {
     "latest": {
       "app_version": "1.37.5",
       "arch": "amd64",
-      "generated": "2026-11-01T23:06:54Z",
+      "generated": "2026-11-04T08:34:25Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -352,7 +352,7 @@
               "GPLv2"
             ],
             "name": "mysql84-client",
-            "version": "8.4.11_1"
+            "version": "8.4.13"
           },
           {
             "licenses": [
@@ -461,7 +461,7 @@
     "pkg": {
       "app_version": "1.37.2_1",
       "arch": "amd64",
-      "generated": "2026-11-01T22:49:53Z",
+      "generated": "2026-11-04T08:20:30Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -815,7 +815,7 @@
               "GPLv2"
             ],
             "name": "mysql84-client",
-            "version": "8.4.11_1"
+            "version": "8.4.13"
           },
           {
             "licenses": [
@@ -944,9 +944,9 @@
       }
     },
     "pkg-latest": {
-      "app_version": "1.37.4_1",
+      "app_version": "1.37.5",
       "arch": "amd64",
-      "generated": "2026-11-01T22:50:23Z",
+      "generated": "2026-11-04T08:22:27Z",
       "packages": {
         "dotnet": [],
         "freebsd": [
@@ -1388,7 +1388,7 @@
               "GPLv3"
             ],
             "name": "vaultwarden",
-            "version": "1.37.4_1"
+            "version": "1.37.5"
           },
           {
             "licenses": [
